@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web3 & AI: A Beginner's Roadmap — Freedom Teaches Tech</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: '#00FFB2',
+            accent: '#FF6B35',
+            gold: '#FFD166',
+            deep: '#050A14',
+            panel: '#0A1628',
+            border: '#1A2E4A',
+          },
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+            body: ['DM Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { scroll-behavior: smooth; }
+    body { background-color: #050A14; font-family: 'DM Sans', sans-serif; }
+
+    .mesh-bg {
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(0,255,178,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 80%, rgba(255,107,53,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(255,209,102,0.04) 0%, transparent 70%),
+        #050A14;
+    }
+
+    .glow-text {
+      text-shadow: 0 0 40px rgba(0,255,178,0.5), 0 0 80px rgba(0,255,178,0.2);
+    }
+
+    .neon-border {
+      border: 1px solid rgba(0,255,178,0.3);
+      box-shadow: 0 0 20px rgba(0,255,178,0.08), inset 0 0 20px rgba(0,255,178,0.03);
+    }
+
+    .gold-border {
+      border: 1px solid rgba(255,209,102,0.3);
+      box-shadow: 0 0 20px rgba(255,209,102,0.08);
+    }
+
+    .cta-btn {
+      background: linear-gradient(135deg, #00FFB2 0%, #00D4FF 100%);
+      color: #050A14;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(0,255,178,0.4), 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 0 50px rgba(0,255,178,0.6), 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    .feature-card {
+      background: rgba(10,22,40,0.8);
+      border: 1px solid rgba(26,46,74,0.8);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    .feature-card:hover {
+      border-color: rgba(0,255,178,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 20px rgba(0,255,178,0.05);
+    }
+
+    .testimonial-card {
+      background: linear-gradient(135deg, rgba(10,22,40,0.9) 0%, rgba(5,10,20,0.9) 100%);
+      border: 1px solid rgba(26,46,74,0.6);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .float-anim { animation: float 5s ease-in-out infinite; }
+    .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+    .fade-in-up { animation: fadeInUp 0.8s ease forwards; }
+
+    .ticker-wrap { overflow: hidden; white-space: nowrap; }
+    .ticker-content { display: inline-block; animation: ticker 20s linear infinite; }
+
+    .grid-pattern {
+      background-image: linear-gradient(rgba(0,255,178,0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,255,178,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .price-tag {
+      background: linear-gradient(135deg, #FFD166, #FF9A3C);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .chapter-row:nth-child(even) { background: rgba(0,255,178,0.02); }
+
+    .sticky-cta {
+      backdrop-filter: blur(20px);
+      background: rgba(5,10,20,0.92);
+      border-top: 1px solid rgba(0,255,178,0.15);
+    }
+
+    .badge {
+      background: rgba(0,255,178,0.1);
+      border: 1px solid rgba(0,255,178,0.25);
+      color: #00FFB2;
+    }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: #00FFB2;
+      text-transform: uppercase;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #050A14; }
+    ::-webkit-scrollbar-thumb { background: rgba(0,255,178,0.3); border-radius: 2px; }
+  </style>
+</head>
+<body class="mesh-bg text-white overflow-x-hidden">
+
+<!-- STICKY NAV BAR TOP -->
+<div class="sticky top-0 z-50 sticky-cta px-4 py-3">
+  <div class="max-w-5xl mx-auto flex items-center justify-between">
+    <span class="font-display font-bold text-sm text-white">Freedom<span class="text-neon">Teaches</span>Tech</span>
+    <a href="https://selar.com/775g165774" target="_blank" class="cta-btn text-xs px-5 py-2 rounded-full">
+      Get It — ₦7,000 <i class="fa-solid fa-arrow-right ml-1"></i>
+    </a>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap bg-neon/10 border-y border-neon/20 py-2">
+  <div class="ticker-content">
+    <span class="text-neon font-mono text-xs px-8">⚡ LIMITED OFFER — ₦7,000 ONLY</span>
+    <span class="text-white/50 font-mono text-xs px-8">•</span>
+    <span class="text-gold font-mono text-xs px-8">97 PAGES OF PURE VALUE</span>
+    <span class="text-white/50 font-mono text-xs px-8">•</span>
+    <span class="text-neon font-mono text-xs px-8">WEB3 + AI BEGINNER GUIDE</span>
+    <span class="text-white/50 font-mono text-xs px-8">•</span>
+    <span class="text-gold font-mono text-xs px-8">INSTANT DOWNLOAD</span>
+    <span class="text-white/50 font-mono text-xs px-8">•</span>
+    <span class="text-neon font-mono text-xs px-8">⚡ LIMITED OFFER — ₦7,000 ONLY</span>
+    <span class="text-white/50 font-mono text-xs px-8">•</span>
+    <span class="text-gold font-mono text-xs px-8">97 PAGES OF PURE VALUE</span>
+    <span class="text-white/50 font-mono text-xs px-8">•</span>
+    <span class="text-neon font-mono text-xs px-8">WEB3 + AI BEGINNER GUIDE</span>
+    <span class="text-white/50 font-mono text-xs px-8">•</span>
+    <span class="text-gold font-mono text-xs px-8">INSTANT DOWNLOAD</span>
+    <span class="text-white/50 font-mono text-xs px-8">•</span>
+  </div>
+</div>
+
+
+<!-- ===== HERO ===== -->
+<section class="relative grid-pattern min-h-screen flex flex-col items-center justify-center px-4 pt-16 pb-24 text-center overflow-hidden">
+
+  <!-- Background glow orbs -->
+  <div class="absolute top-20 left-10 w-64 h-64 rounded-full bg-neon/5 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-accent/5 blur-3xl pointer-events-none"></div>
+
+  <div class="fade-in-up max-w-3xl mx-auto relative z-10">
+    <span class="badge inline-block px-4 py-1.5 rounded-full text-xs font-mono mb-6">
+      <i class="fa-solid fa-fire-flame-curved mr-1 text-accent"></i> BEST-SELLING DIGITAL GUIDE
+    </span>
+
+    <h1 class="font-display text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+      The <span class="text-neon glow-text">Web3 & AI</span><br/>
+      Beginner's Roadmap
+    </h1>
+
+    <p class="text-white/60 text-base md:text-lg font-body leading-relaxed mb-8 max-w-xl mx-auto">
+      Stop watching the future from the sidelines. This 97-page guide is your step-by-step entry into Web3 and Artificial Intelligence — written specifically for Nigerians who want to earn and thrive in the digital economy.
+    </p>
+
+    <!-- Book mockup -->
+    <div class="float-anim mb-10 relative inline-block">
+      <div class="relative w-56 mx-auto">
+        <!-- Book cover design -->
+        <div class="neon-border rounded-2xl overflow-hidden shadow-2xl" style="box-shadow: 0 20px 80px rgba(0,255,178,0.3), 0 0 40px rgba(0,255,178,0.15);">
+          <img
+            src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=520&fit=crop&q=80"
+            alt="Web3 AI Guide Cover"
+            class="w-full object-cover"
+            style="height: 300px;"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-deep via-deep/60 to-transparent flex flex-col justify-end p-4">
+            <p class="font-mono text-neon text-xs mb-1 pulse-glow">FREEDOM TEACHES TECH</p>
+            <p class="font-display font-extrabold text-white text-lg leading-tight">Web3 & AI<br/><span class="text-neon">Beginner's Roadmap</span></p>
+            <p class="text-white/50 text-xs mt-1">97 Pages · Digital Edition</p>
+          </div>
+        </div>
+        <!-- Badge on cover -->
+        <div class="absolute -top-3 -right-3 w-14 h-14 rounded-full bg-accent flex items-center justify-center shadow-lg" style="box-shadow: 0 0 20px rgba(255,107,53,0.5);">
+          <div class="text-center">
+            <div class="font-display font-black text-white text-xs leading-none">NEW</div>
+            <div class="font-mono text-white text-xs">2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="flex flex-col items-center gap-2 mb-8">
+      <div class="flex items-baseline gap-3">
+        <span class="text-white/30 line-through text-xl font-mono">₦15,000</span>
+        <span class="price-tag font-display font-extrabold text-5xl">₦7,000</span>
+      </div>
+      <p class="text-white/40 text-sm font-mono">One-time payment · Instant Download</p>
+    </div>
+
+    <a href="https://selar.com/775g165774" target="_blank" class="cta-btn inline-block px-10 py-4 rounded-full text-lg mb-4">
+      <i class="fa-solid fa-bolt mr-2"></i> Buy Now — ₦7,000
+    </a>
+
+    <p class="text-white/30 text-xs font-mono block">
+      <i class="fa-solid fa-lock mr-1"></i> Secure checkout via Selar.co · Instant PDF delivery
+    </p>
+  </div>
+</section>
+
+
+<!-- ===== SOCIAL PROOF NUMBERS ===== -->
+<section class="px-4 py-12 border-y border-border">
+  <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div>
+      <p class="font-display font-extrabold text-3xl text-neon">97</p>
+      <p class="text-white/40 text-sm mt-1">Pages of Content</p>
+    </div>
+    <div>
+      <p class="font-display font-extrabold text-3xl text-gold">500+</p>
+      <p class="text-white/40 text-sm mt-1">Copies Sold</p>
+    </div>
+    <div>
+      <p class="font-display font-extrabold text-3xl text-neon">2</p>
+      <p class="text-white/40 text-sm mt-1">Power Topics</p>
+    </div>
+    <div>
+      <p class="font-display font-extrabold text-3xl text-gold">4.9<i class="fa-solid fa-star text-2xl ml-1"></i></p>
+      <p class="text-white/40 text-sm mt-1">Average Rating</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== THE PROBLEM ===== -->
+<section class="px-4 py-20 max-w-3xl mx-auto text-center">
+  <span class="section-label block mb-4">// The Reality</span>
+  <h2 class="font-display font-extrabold text-3xl md:text-4xl mb-6">
+    The Digital Economy Is Moving Fast.<br/>
+    <span class="text-accent">Are You Being Left Behind?</span>
+  </h2>
+
+  <div class="grid gap-4 text-left mt-10">
+    <div class="feature-card rounded-xl p-5 flex gap-4 items-start">
+      <div class="text-accent text-xl mt-1"><i class="fa-solid fa-circle-xmark"></i></div>
+      <div>
+        <p class="font-display font-bold text-white mb-1">You keep hearing about Web3, NFTs, DeFi, AI — but it all sounds like jargon</p>
+        <p class="text-white/40 text-sm">You've watched videos but still feel confused about where to actually start.</p>
+      </div>
+    </div>
+    <div class="feature-card rounded-xl p-5 flex gap-4 items-start">
+      <div class="text-accent text-xl mt-1"><i class="fa-solid fa-circle-xmark"></i></div>
+      <div>
+        <p class="font-display font-bold text-white mb-1">You want to make money online but don't know which digital skill to learn first</p>
+        <p class="text-white/40 text-sm">Crypto? Freelancing? AI tools? The options are overwhelming without a roadmap.</p>
+      </div>
+    </div>
+    <div class="feature-card rounded-xl p-5 flex gap-4 items-start">
+      <div class="text-accent text-xl mt-1"><i class="fa-solid fa-circle-xmark"></i></div>
+      <div>
+        <p class="font-display font-bold text-white mb-1">Most resources are for Americans — they don't speak to your Nigerian reality</p>
+        <p class="text-white/40 text-sm">Bank restrictions, naira, local payment issues — this guide addresses all of that.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-10 p-6 rounded-2xl" style="background: linear-gradient(135deg, rgba(0,255,178,0.08), rgba(0,212,255,0.05)); border: 1px solid rgba(0,255,178,0.2);">
+    <p class="font-display font-bold text-xl text-neon mb-2">This guide was written to solve exactly that.</p>
+    <p class="text-white/50 text-sm">Freedom Teaches Tech built this roadmap for absolute beginners in Nigeria who want a practical, no-fluff introduction to the two biggest opportunities of our generation.</p>
+  </div>
+</section>
+
+
+<!-- ===== WHAT'S INSIDE ===== -->
+<section class="px-4 py-20 relative overflow-hidden">
+  <div class="absolute inset-0 grid-pattern opacity-30"></div>
+  <div class="max-w-4xl mx-auto relative z-10">
+    <div class="text-center mb-14">
+      <span class="section-label block mb-3">// What's Inside</span>
+      <h2 class="font-display font-extrabold text-3xl md:text-4xl">
+        97 Pages. Zero Fluff.<br/><span class="text-neon">Pure Beginner Gold.</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- WEB3 Module -->
+      <div class="neon-border rounded-2xl p-6 bg-panel/60 backdrop-blur">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl bg-neon/10 flex items-center justify-center">
+            <i class="fa-solid fa-cubes text-neon text-lg"></i>
+          </div>
+          <div>
+            <p class="font-mono text-neon text-xs">PART ONE</p>
+            <p class="font-display font-bold text-white">Web3 Fundamentals</p>
+          </div>
+        </div>
+        <ul class="space-y-3 text-sm text-white/60">
+          <li class="flex gap-2"><i class="fa-solid fa-check text-neon mt-0.5 flex-shrink-0"></i> What is blockchain & how it actually works</li>
+          <li class="flex gap-2"><i class="fa-solid fa-check text-neon mt-0.5 flex-shrink-0"></i> Crypto wallets — setting up & staying safe</li>
+          <li class="flex gap-2"><i class="fa-solid fa-check text-neon mt-0.5 flex-shrink-0"></i> NFTs explained (beyond the hype)</li>
+          <li class="flex gap-2"><i class="fa-solid fa-check text-neon mt-0.5 flex-shrink-0"></i> DeFi — decentralized finance for beginners</li>
+          <li class="flex gap-2"><i class="fa-solid fa-check text-neon mt-0.5 flex-shrink-0"></i> How Nigerians can earn from Web3 today</li>
+          <li class="flex gap-2"><i class="fa-solid fa-check text-neon mt-0.5 flex-shrink-0"></i> Web3 scam prevention & red flags</li>
+        </ul>
+      </div>
+
+      <!-- AI Module -->
+      <div class="gold-border rounded-2xl p-6 bg-panel/60 backdrop-blur">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center">
+            <i class="fa-solid fa-robot text-gold text-lg"></i>
+          </div>
+          <div>
+            <p class="font-mono text-gold text-xs">PART TWO</p>
+            <p class="font-display font-bold text-white">AI Tools Mastery</p>
+          </div>
+        </div>
+        <ul class="space-y-3 text-sm text-white/60">
+          <li class="flex gap-2"><i class="fa-solid fa-check text-gold mt-0.5 flex-shrink-0"></i> What is AI and how it's changing everything</li>
+          <li class="flex gap-2"><i class="fa-solid fa-check text-gold mt-0.5 flex-shrink-0"></i> ChatGPT, Gemini, Claude — practical usage</li>
+          <li class="flex gap-2"><i class="fa-solid fa-check text-gold mt-0.5 flex-shrink-0"></i> AI tools for writing, design & productivity</li>
+          <li class="flex gap-2"><i class="fa-solid fa-check text-gold mt-0.5 flex-shrink-0"></i> How to make money with AI as a Nigerian</li>
+          <li class="flex gap-2"><i class="fa-solid fa-check text-gold mt-0.5 flex-shrink-0"></i> Prompt engineering basics (earn more faster)</li>
+          <li class="flex gap-2"><i class="fa-solid fa-check text-gold mt-0.5 flex-shrink-0"></i> Building a side income with AI freelancing</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bonus section -->
+    <div class="mt-6 rounded-2xl p-6" style="background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(255,209,102,0.05)); border: 1px solid rgba(255,107,53,0.25);">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
+          <i class="fa-solid fa-gift text-accent text-lg"></i>
+        </div>
+        <div>
+          <p class="font-mono text-accent text-xs mb-1">BONUS INCLUDED</p>
+          <p class="font-display font-bold text-white mb-2">Nigerian Digital Earnings Blueprint</p>
+          <p class="text-white/50 text-sm">A curated list of platforms, communities, and strategies specifically for Nigerians to start earning online using Web3 and AI tools — with naira payment options included.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== WHO IT'S FOR ===== -->
+<section class="px-4 py-20 max-w-3xl mx-auto">
+  <div class="text-center mb-12">
+    <span class="section-label block mb-3">// Is This For You?</span>
+    <h2 class="font-display font-extrabold text-3xl">This Guide Is Perfect If You Are…</h2>
+  </div>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    <div class="feature-card rounded-xl p-5 flex gap-3">
+      <i class="fa-solid fa-user-graduate text-neon text-lg mt-1 flex-shrink-0"></i>
+      <p class="text-white/70 text-sm">A student or graduate who wants to earn from the internet beyond just social media</p>
+    </div>
+    <div class="feature-card rounded-xl p-5 flex gap-3">
+      <i class="fa-solid fa-briefcase text-gold text-lg mt-1 flex-shrink-0"></i>
+      <p class="text-white/70 text-sm">A professional looking to add high-income digital skills without going back to school</p>
+    </div>
+    <div class="feature-card rounded-xl p-5 flex gap-3">
+      <i class="fa-solid fa-store text-accent text-lg mt-1 flex-shrink-0"></i>
+      <p class="text-white/70 text-sm">An entrepreneur who wants to understand how Web3 and AI can grow your business</p>
+    </div>
+    <div class="feature-card rounded-xl p-5 flex gap-3">
+      <i class="fa-solid fa-mobile-screen text-neon text-lg mt-1 flex-shrink-0"></i>
+      <p class="text-white/70 text-sm">A complete beginner — you only need a phone and the hunger to learn</p>
+    </div>
+    <div class="feature-card rounded-xl p-5 flex gap-3 sm:col-span-2">
+      <i class="fa-solid fa-naira-sign text-gold text-lg mt-1 flex-shrink-0"></i>
+      <p class="text-white/70 text-sm">A Nigerian tired of watching the digital revolution happen to others — and ready to be part of it</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="px-4 py-20 bg-panel/30 border-y border-border">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="section-label block mb-3">// Real Readers. Real Results.</span>
+      <h2 class="font-display font-extrabold text-3xl">What People Are Saying</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="testimonial-card rounded-2xl p-5">
+        <div class="flex gap-1 text-gold text-xs mb-3">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="text-white/70 text-sm leading-relaxed mb-4">"I've been trying to understand crypto for 2 years. After reading this eBook, everything finally clicked. The section on wallets alone saved me from a scam."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-neon/20 flex items-center justify-center text-neon font-display font-bold text-sm">C</div>
+          <div>
+            <p class="text-white font-display font-bold text-sm">Chukwuemeka A.</p>
+            <p class="text-white/30 text-xs">Lagos, Nigeria</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card rounded-2xl p-5 border-neon/20" style="border-color: rgba(0,255,178,0.2);">
+        <div class="flex gap-1 text-gold text-xs mb-3">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+        </div>
+        <p class="text-white/70 text-sm leading-relaxed mb-4">"Freedom writes like a friend explaining things, not a lecturer. I started using AI tools for my small business and cut my content time by half!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold font-display font-bold text-sm">A</div>
+          <div>
+            <p class="text-white font-display font-bold text-sm">Adaeze O.</p>
+            <p class="text-white/30 text-xs">Enugu, Nigeria</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card rounded-2xl p-5">
+        <div class="flex gap-1 text-gold text-xs mb-3">
+          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+        </div>
+        <p class="text-white/70 text-sm leading-relaxed mb-4">"As a final year student, this book showed me there are real opportunities I can tap into right now. Worth every naira and more."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent font-display font-bold text-sm">T</div>
+          <div>
+            <p class="text-white font-display font-bold text-sm">Taiwo B.</p>
+            <p class="text-white/30 text-xs">Ibadan, Nigeria</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== ABOUT THE AUTHOR ===== -->
+<section class="px-4 py-20 max-w-3xl mx-auto">
+  <div class="text-center mb-10">
+    <span class="section-label block mb-3">// About The Author</span>
+  </div>
+
+  <div class="neon-border rounded-2xl overflow-hidden">
+    <div class="md:flex">
+      <div class="md:w-48 flex-shrink-0">
+        <img
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&q=80"
+          alt="Freedom - Author"
+          class="w-full h-48 md:h-full object-cover"
+        />
+      </div>
+      <div class="p-6 flex flex-col justify-center">
+        <p class="font-mono text-neon text-xs mb-2">WRITTEN BY</p>
+        <h3 class="font-display font-extrabold text-2xl text-white mb-3">Freedom</h3>
+        <p class="text-white/60 text-sm leading-relaxed mb-4">
+          Nigerian digital entrepreneur, tech educator, and founder of <span class="text-neon font-medium">Freedom Teaches Tech</span>. Freedom has helped hundreds of Nigerians break into the digital economy through practical, jargon-free education on AI, Web3, and online business.
+        </p>
+        <div class="flex gap-4 text-sm text-white/40">
+          <span><i class="fa-brands fa-facebook text-neon mr-1"></i> Freedom Teaches Tech</span>
+          <span><i class="fa-brands fa-whatsapp text-neon mr-1"></i> Digital Skills Hub</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== FINAL CTA ===== -->
+<section class="px-4 py-24 text-center relative overflow-hidden">
+  <div class="absolute inset-0" style="background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,255,178,0.07) 0%, transparent 70%);"></div>
+
+  <div class="max-w-2xl mx-auto relative z-10">
+    <span class="section-label block mb-4">// Your Move</span>
+    <h2 class="font-display font-extrabold text-4xl md:text-5xl mb-6 leading-tight">
+      Stop Scrolling.<br/>
+      <span class="text-neon glow-text">Start Earning.</span>
+    </h2>
+    <p class="text-white/50 text-base mb-10 max-w-lg mx-auto">
+      For less than the cost of a data bundle, you get a 97-page blueprint to navigate Web3 and AI — the two biggest earning opportunities available to Nigerians right now.
+    </p>
+
+    <!-- Price card -->
+    <div class="neon-border rounded-2xl p-8 mb-8 max-w-sm mx-auto" style="background: rgba(10,22,40,0.8);">
+      <p class="font-mono text-neon text-xs mb-3">WEB3 & AI: BEGINNER'S ROADMAP</p>
+      <div class="flex items-baseline justify-center gap-3 mb-2">
+        <span class="text-white/30 line-through text-lg font-mono">₦15,000</span>
+        <span class="price-tag font-display font-extrabold text-5xl">₦7,000</span>
+      </div>
+      <p class="text-white/30 text-xs font-mono mb-6">Save ₦8,000 — Today Only</p>
+
+      <ul class="text-left space-y-2 text-sm text-white/60 mb-6">
+        <li class="flex gap-2"><i class="fa-solid fa-circle-check text-neon flex-shrink-0 mt-0.5"></i> 97-page PDF delivered instantly</li>
+        <li class="flex gap-2"><i class="fa-solid fa-circle-check text-neon flex-shrink-0 mt-0.5"></i> Nigerian Digital Earnings Bonus</li>
+        <li class="flex gap-2"><i class="fa-solid fa-circle-check text-neon flex-shrink-0 mt-0.5"></i> Pay with card, bank transfer, USSD</li>
+        <li class="flex gap-2"><i class="fa-solid fa-circle-check text-neon flex-shrink-0 mt-0.5"></i> Secure checkout via Selar.co</li>
+        <li class="flex gap-2"><i class="fa-solid fa-circle-check text-neon flex-shrink-0 mt-0.5"></i> Lifetime access — read on any device</li>
+      </ul>
+
+      <a href="https://selar.com/775g165774" target="_blank" class="cta-btn block w-full py-4 rounded-xl text-base text-center">
+        <i class="fa-solid fa-bolt mr-2"></i> Get Instant Access — ₦7,000
+      </a>
+    </div>
+
+    <p class="text-white/20 text-xs font-mono">
+      <i class="fa-solid fa-lock mr-1"></i> 100% Secure Payment · Powered by Selar.co
+    </p>
+  </div>
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+<footer class="border-t border-border px-4 py-10 text-center">
+  <p class="font-display font-bold text-white mb-1">Freedom<span class="text-neon">Teaches</span>Tech</p>
+  <p class="text-white/30 text-xs font-mono mb-4">Empowering Nigerians with Digital Skills</p>
+  <div class="flex justify-center gap-6 text-white/30 text-sm mb-6">
+    <a href="https://selar.com/775g165774" class="hover:text-neon transition-colors">Buy the eBook</a>
+    <span>·</span>
+    <a href="#" class="hover:text-neon transition-colors">WhatsApp Community</a>
+    <span>·</span>
+    <a href="#" class="hover:text-neon transition-colors">Facebook Page</a>
+  </div>
+  <p class="text-white/20 text-xs">&copy; 2024 Freedom Teaches Tech. All rights reserved.</p>
+</footer>
+
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.feature-card, .testimonial-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Animate counter numbers
+  function animateCounter(el, target, suffix = '') {
+    let current = 0;
+    const increment = target / 60;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      el.textContent = Math.floor(current) + suffix;
+    }, 20);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const targets = [
+          { selector: '.stat-97', val: 97, suffix: '' },
+          { selector: '.stat-500', val: 500, suffix: '+' },
+        ];
+        counterObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+</script>
+
+</body>
+</html>
